@@ -21,6 +21,7 @@ jobs:
           ARGS: "-rlgoDzvc --delete"
           SOURCE: "./"
           REMOTE_HOST: ${{ secrets.CPANEL_HOST }}
+          REMOTE_PORT: 2222
           REMOTE_USER: ${{ secrets.CPANEL_USER }}
           TARGET: ${{ secrets.CPANEL_TARGET_DIR }}
           EXCLUDE: ".git/, .github/, .gitignore, .claude/, .idea/, README.md"
