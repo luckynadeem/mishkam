@@ -1,0 +1,26 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: SSH Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH (rsync)
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.CPANEL_SSH_KEY }}
+          ARGS: "-rlgoDzvc --delete"
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.CPANEL_HOST }}
+          REMOTE_USER: ${{ secrets.CPANEL_USER }}
+          TARGET: ${{ secrets.CPANEL_TARGET_DIR }}
+          EXCLUDE: ".git/, .github/, .gitignore, .claude/, .idea/, README.md"
