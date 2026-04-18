@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+  <link href="favicons/5461-images-favicon.png" rel="icon">
+  <title>Mishkam — Coming Soon</title>
+  <meta name="description" content="Mishkam - Coming Soon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #A07830;
+      --bg-deep: #0C0C0E;
+      --bg-card: rgba(255,255,255,0.03);
+      --text-primary: #F0EDE8;
+      --text-muted: #8A8680;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Animated background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 110%, rgba(201,168,76,0.07) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Grain texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── Logo block ── */
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      animation: fadeDown 1s ease both;
+    }
+
+    .logo-img {
+      width: 200px;
+      filter: drop-shadow(0 0 32px rgba(201,168,76,0.25));
+      transition: filter 0.4s ease;
+    }
+    .logo-img:hover {
+      filter: drop-shadow(0 0 48px rgba(201,168,76,0.45));
+    }
+
+    .logo-rule {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 240px;
+    }
+    .logo-rule span {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .logo-rule i {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── Coming Soon badge ── */
+    .coming-soon-label {
+      margin-top: 28px;
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      animation: fadeDown 1s 0.15s ease both;
+    }
+
+    /* ── Headline ── */
+    .headline {
+      margin-top: 40px;
+      text-align: center;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+    .headline h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      background: linear-gradient(135deg, var(--text-primary) 40%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .headline p {
+      margin-top: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      font-style: italic;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Section divider ── */
+    .divider {
+      margin: 48px auto 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: min(560px, 90%);
+      animation: fadeUp 1s 0.45s ease both;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35));
+    }
+    .divider::after {
+      background: linear-gradient(270deg, transparent, rgba(201,168,76,0.35));
+    }
+    .divider-text {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      white-space: nowrap;
+    }
+
+    /* ── Services grid ── */
+    .services {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      width: min(880px, 92%);
+      animation: fadeUp 1s 0.55s ease both;
+    }
+
+    .service-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 2px;
+      transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold-dark), var(--gold-light));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .service-card:hover {
+      border-color: rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.04);
+      transform: translateX(3px);
+    }
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-name {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+    .service-sub {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ── Footer row ── */
+    .footer-row {
+      margin-top: 52px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      animation: fadeUp 1s 0.7s ease both;
+    }
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .contact-link {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+      padding-bottom: 2px;
+    }
+    .contact-link:hover {
+      color: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    /* ── Keyframes ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .services { grid-template-columns: 1fr; }
+      .logo-img { width: 160px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <img class="logo-img" src="images/miskam_logo-removebg.png" alt="Mishkam">
+      <div class="logo-rule"><span></span><i></i><span></span></div>
+    </div>
+
+    <!-- Coming soon label -->
+    <div class="coming-soon-label">Coming Soon</div>
+
+    <!-- Headline -->
+    <div class="headline">
+      <h1>The Future is Here</h1>
+      <p>An empire of excellence, crafted for you</p>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span class="divider-text">Our Ventures</span>
+    </div>
+
+    <!-- Services -->
+    <div class="services">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Fashion Wear</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Men Wear</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.57l1.65-7.43H6"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Mart</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Supermarket</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Restaurants</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Fast Food</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Online Services</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Consultancy</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/><rect x="6" y="3" width="12" height="6"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Real Estate</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <div>
+          <div class="service-name">Saloon</div>
+          <div class="service-sub">Mishkam</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-row">
+      <p class="tagline">The best is yet to come&hellip;</p>
+      <a class="contact-link" href="mailto:info@mishkam.com">info@mishkam.com</a>
+    </div>
+
+  </div>
+</body>
+</html>
